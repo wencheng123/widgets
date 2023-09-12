@@ -1,0 +1,3 @@
+rootProject.name = "MyWidgets"
+include ':app'
+include ':mylibrary'
