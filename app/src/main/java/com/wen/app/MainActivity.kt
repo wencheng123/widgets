@@ -1,4 +1,4 @@
-package com.wen.widgets
+package com.wen.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

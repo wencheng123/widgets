@@ -8,7 +8,7 @@ android {
     buildToolsVersion "30.0.0"
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -41,7 +41,6 @@ afterEvaluate {
             release(MavenPublication) {
                 // Applies the component for the release build variant.
                 from components.release
-
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.wen.widgets'
                 artifactId = 'wen'
@@ -50,8 +49,6 @@ afterEvaluate {
         }
     }
 }
-
-//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
 
 dependencies {
 
