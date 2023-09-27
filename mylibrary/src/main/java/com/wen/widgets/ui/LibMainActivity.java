@@ -3,12 +3,15 @@ package com.wen.widgets.ui;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.wen.widgets.R;
 import com.wen.widgets.utils.WDensityUtil;
+import com.wen.widgets.utils.WKeyBoardUtil;
 import com.wen.widgets.utils.WLogUtil;
+import com.wen.widgets.utils.WToastUtil;
 import com.wen.widgets.wheelview.ArrayWheelAdapter;
 import com.wen.widgets.wheelview.OnItemSelectedListener;
 import com.wen.widgets.wheelview.WheelView;
@@ -53,9 +56,35 @@ public class LibMainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(int index) {
                 Point screenSize = WDensityUtil.getScreenSize(LibMainActivity.this);
-                WLogUtil.i("=====screenSize:" + screenSize);
             }
         });
+
+        View view = findViewById(R.id.view);
+
+        WKeyBoardUtil.addOnSoftKeyboardListener(this, new WKeyBoardUtil.OnKeyStateListener() {
+            @Override
+            public void onKeyboardShow(int keyboardHeight) {
+                WLogUtil.i("=====onShow:" + keyboardHeight);
+                if (keyboardHeight > 0) {
+                    view.getLayoutParams().height = keyboardHeight;
+                }
+            }
+            @Override
+            public void onKeyboardHide() {
+                WLogUtil.i("=====onHide:" );
+//                TextView textView = new TextView(LibMainActivity.this);
+//                textView.setText("测试自定义View");
+                WToastUtil.show(LibMainActivity.this,"textView");
+
+
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        WKeyBoardUtil.removeOnSoftKeyboardListener(this);
 
     }
 }
